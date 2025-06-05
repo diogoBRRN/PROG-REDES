@@ -9,20 +9,21 @@ for numero in range(2, 99999): #Verifica todos os números de 2 até essse núme
    i = 2 # inicializa o possível divisor, como todos números são divisiveis por 1, a gente começa do 2.
 
    for i in range(2, numero + 1): # aqui é um loop para fatorar a variável número temporária que criamos. (AQUI TESTAMOS TODOS OS DIVISORES DE 2 ATÉ O NÚMERO)
-      if (i * i) > num_temp: 
+      if (i * i) > num_temp: #testamos todos os divisores posssíveis de numtemp de uma forma mais rápida de modo que se i*i>num_temp já testamos todos os possíveis divisores primos menores que a raiz de numero temporario.
          break
-      if num_temp % i == 0: 
-         cont+=1
+      if num_temp % i == 0: #se i divide num_temp e o resto é zero ele é um fator primo
+         cont+=1 #conta o fator primo diferente
          while num_temp % i == 0:
-            num_temp //= i
+            num_temp //= i #divide num_temp repetidas vezes ( até o resto ficar 0) por i e pega sua parte inteira. O objetivo aqui é remover as cópias 
+                           # (potências de um mesmo fator) da fatoração.
    
-   if num_temp > 1:
+   if num_temp > 1: #se depois do loop sobrou um numero maior que 1, ele também é um fator primo (é primo por si só). conta +1
       cont += 1
 
-   if cont == n: 
-      consecutivos += 1
+   if cont == n: #se o numero atual tem exatamente n fatores primos distintos (numero q a gente pediu).
+      consecutivos += 1 #incrementa numero de consecutivos
       if consecutivos == n:
-         comeco = numero - n + 1
+         comeco = numero - n + 1 #calcula o inicio da sequencia
          break
    else:
      consecutivos=0
